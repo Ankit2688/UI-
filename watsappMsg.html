@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Wishing our friends</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body{
+ background-image: url("https://newevolutiondesigns.com/images/freebies/hd-wallpaper-37.jpg");
+    background-color: #b2afab;
+    background-position: 72%;
+    background-size: cover;
+    min-height: 100vh;
+    max-height: 999px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+ }
+</style>  
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+	<center>
+		<div class="container" ng-app = "myApp" ng-controller = "wishCtrl">
+		<span ng-show = "newUser">
+			<span><h2 style="color:white;">{{WelcomeMessage}}</h2></span>
+		</span><br />			
+		
+		
+		<div class="container" ng-show = "newUser">
+			  <button type="button" class="btn btn-info btn-lg"  style = "background-color:black;"data-toggle="modal" data-target="#myModal">Send Wishes</button>
+			  <!-- Modal -->
+			  <div class="modal fade" id="myModal">
+				<div class="modal-dialog">			
+				  <!-- Modal content-->
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+					  <h4 class="modal-title">Convey your  <strong>Best Wishes..</strong></h4>
+					</div>
+					<div class="modal-body">
+							<form name="myForm">
+								<div class="form-group">
+								  <label for="name" style = "display: flex;" >Your Name:</label>
+								  <input type="name" name ="myName" class="form-control" ng-model = "myName" id="name" autofocus placeholder="Enter name" required>
+								  <span ng-show="myForm.myName.$touched && myForm.myName.$invalid">Your Name Please...</span>
+								</div>
+								<div class="form-group">
+								  <label for="fndNum" style = "display: flex;" >Friend Mobile no:</label> 
+									<input type = "tel"  id = "mobileField" class = "form-control" name="fndNum" ng-pattern = "/^\d{10}$/" ng-model = "fndNum" required>
+										<span ng-show="myForm.fndNum.$touched && myForm.fndNum.$invalid">invalid mobile  number.</span>
+								</div>
+								<div class="form-group">
+									  <label for="myMsg" style = "display: flex;">Your Message:</label>
+									  <textarea class="form-control" name= "myMsg" ng-model = "myMsg" id="conveyMsg"  placeholder="Some good wishes..." rows="5" id="comment" required></textarea>
+										<span ng-show="myForm.myMsg.$touched && myForm.myMsg.$invalid">Please write something.</span>
+								</div>
+								<div class="checkbox">
+								  <label style = "display: flex;"><input type="checkbox" id = "iAgree"name ="Iagreed" ng-model ="Iagreed" ng-change="allowUser()">I am ready to wish</label>
+								</div>
+							</form>
+								  <p id = "p2" ng-show="data" style ="text-align:left;display:block;color:blue"> please proceed with your message 😄 😄.....</p>		
+					</div>
+					<div class="modal-footer">
+					  <button type="button" ng-disabled = "!Iagreed || myForm.myName.$invalid" class="btn btn-default" ng-click = "registerUser()" data-dismiss="modal">Proceed</button>
+					</div>
+				  </div>
+				</div>
+			  </div>  
+			</div>
+			  <div class="alert alert-success" ng-show="enableUser" >
+				<span><strong>{{uName}}</strong>😄 you are ready for wishing your friend.....</span><br/><br/>
+				<input type = "button" style = "text-align:center"class ="btn btn-success btn-xs" value = "please go Ahead..." ng-click = "msgStart()">
+			</div>
+			<!--
+			<div class="alert alert-success" ng-show="wishDone" >
+			<span><strong>{{uName}}</strong>  you have wished Viresh.....</span><br/><br/>
+			<input type = "button" style = "text-align:center"class ="btn btn-success btn-xs" value = "exit" ng-click = "exit()">
+			</div>			
+			-->
+		</div>
+	</center>
+<script>
+var app = angular.module("myApp",[]);
+app.controller("wishCtrl", function($scope, $http){
+	
+
+	$scope.WelcomeMessage = "Wish your Friend !!!"
+	$scope.data = false;
+	$scope.successMsg = false;
+	$scope.newUser = true;
+	$scope.enableUser = false;
+	$scope.enableStart = false;
+	$scope.wishDone =false;
+	
+	$scope.allowUser = function(){
+		$scope.data = true;
+	}
+	$(document).ready(function(){
+		$('#submitButton').attr('disabled',true);
+		$('#guessField').keyup(function(){
+			if($(this).val().length !=0)
+				$('#submitButton').attr('disabled', false);            
+			else
+				$('#submitButton').attr('disabled',true);
+		})
+	});
+	
+	$scope.registerUser = function(){	
+			$scope.newUser = false;
+			$scope.successMsg = true;
+			$scope.enableUser = true;
+			var userName = document.getElementById("name").value;
+			$scope.uName =userName ;
+			
+	} 
+
+
+  $scope.msgStart = function(){
+  	$scope.enableStart = true;
+	$scope.enableUser = false;
+
+	
+	var message = $("#conveyMsg").val();
+	var un =$scope.uName;
+	var mob_no = $("#mobileField").val();
+	var send_url = "https://wa.me/+91"+mob_no+"/?text="+message+"%0A"+"%0A"+"%0A"+"Your Friend : "+un;
+	location.href = send_url;
+	//location.href = "https://wa.me/+918109466849/?text="+message+"%0A"+"%0A"+"%0A"+"Your Friend : "+un;
+	$scope.wishDone =true;
+
+  }
+$scope.exit= function(){
+window.close();
+}		
+});
+</script>	
+</body>
+</html>
+
+

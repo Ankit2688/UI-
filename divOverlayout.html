@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+
+
+.overlay {
+      position: absolute;
+    display: initial;
+    width: 4%;
+    height: 8%;
+    top: 9px;
+    margin-left: 2px;
+    /* margin-bottom: -4px; */
+    /* right: 52.2%; */
+    bottom: 0px;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+	    visibility: hidden;
+
+}
+.overlay1 {
+      position: absolute;
+    display: initial;
+    width: 4%;
+    height: 8%;
+    top: 173px;
+    margin-left: 2px;
+    /* margin-bottom: -4px; */
+    /* right: 52.2%; */
+    bottom: 0px;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+	    visibility: hidden;
+
+}
+button{
+	paadding:5px;
+	margin:5px;
+}
+</style>
+<body>
+
+
+<div class="col-sm-12" style=" padding: 10px;margin: 10px; border:1px solid black;display: -webkit-inline-box;">
+	<div class="col-sm-6" style=" padding: 10px;margin: 10px; border:1px solid black;display: -webkit-inline-box;"></div>
+	<div class="col-sm-6" style=" padding: 10px;margin: 10px; border:1px solid black;display: -webkit-inline-box;" ></div>
+</div>
+<div class="container col-sm-12"  style=" padding: 10px;margin: 10px; border:1px solid black;display: -webkit-inline-box;">
+   <br><br>        
+  <div class="table table-hover">
+  
+    <div>
+      <div style=" padding: 10px;margin: 10px; border:1px solid black;display: -webkit-inline-box;">
+		<div id="overlay"class="overlay" value = "button1"></div><button>John</button>
+		<div id="overlay"class="overlay"></div><button>John</button>
+		<div id="overlay"class="overlay"></div><button>John</button>
+		<div id="overlay"class="overlay " value = "button1"></div><button>John</button>
+      </div><br>
+      <div style=" padding: 10px;margin: 10px; border:1px solid black;display: -webkit-inline-box;">
+		<div id="overlay1"class="overlay1"></div><button>John</button>
+		<div id="overlay1"class="overlay1"></div><button>John</button>
+		<div id="overlay1"class="overlay1"></div><button>John</button>
+		<div id="overlay1"class="overlay1" value = "button1"></div><button>John</button>
+      </div>
+    </div>
+  </div>
+  
+  <br><br>
+  
+
+</div>
+  <div style="padding:20px">
+  <button  id = "id1">Turn on</button><button id = "id2" >Turn off</button>
+</div>
+
+<script>
+$(document).ready(function(){
+
+		$("#id1").click(function(){
+		
+			$(".overlay").css({visibility :"visible"});
+		
+			$(".overlay1").css({visibility :"visible"});
+
+		});
+		$("#id2").click(function(){
+			$(".overlay").css({visibility :"hidden"});
+			$(".overlay1").css({visibility :"hidden"});
+
+		});
+
+		
+});
+</script>
+</body>
+</html>

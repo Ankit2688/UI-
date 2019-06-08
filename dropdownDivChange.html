@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<body>
+<div class="container">
+		<dl>
+		  <dt id="term-1">term 1</dt>
+		  <dd>definition 1-a</dd>
+		  <dd>definition 1-b</dd>
+		  <dd>definition 1-c</dd>
+		  <dd>definition 1-d</dd>
+		  
+		  <dt id="term-2">term 2</dt>
+		  <dd>definition 2-a</dd>
+		  <dd>definition 2-b</dd>
+		  <dd>definition 2-c</dd>
+
+		  <dt id="term-3">term 3</dt>
+		  <dd>definition 3-a</dd>
+		  <dd>definition 3-b</dd>
+		  
+		  <dt id="term-2">term 2</dt>
+		  <dd>definition 2-a</dd>
+		  <dd>definition 2-b</dd>
+		  <dd>definition 2-c</dd>
+		</dl>
+		
+		
+		<div style="width:500px;" class="siblings">
+		  <ul>  
+			<li class="t">A</li>
+			<li>B</li>
+			<li class="t">C</li>
+			<li>D</li>
+			<li class="stop">E</li>
+		  </ul>   
+		</div>
+		
+		
+ </body>
+ 
+<script>
+$( "#term-2" ).nextUntil( "dt" ).css( "background-color", "red" );
+
+var term3 = document.getElementById( "term-3" );
+
+$( "#term-1" ).nextUntil( term3, "dd" ).css( "color", "green" );
+
+
+$(".t").css({"color":"red","border":"1px solid black"});
+
+</script>
+</html> 

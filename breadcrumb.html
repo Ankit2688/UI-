@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<style>
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+ul.breadcrumb li  {
+  color: #0275d8;
+  text-decoration: none;
+}
+ul.breadcrumb li:hover {
+  color: #01447e;
+cursor:pointer;
+}
+</style>
+<script>
+$(document).ready(function(){
+
+	//var current_url = "10.255.208.11/vm/1/view/edit/final";
+	var current_url = "10.255.208.11/switch/1101_01/port_view/port_edit";
+	var dataArray = current_url.split("/");
+
+	for(var i =1 ; i<dataArray.length ;i++){
+		$li = $('<li/>').attr({class:'dynLi',id:i,target:'_blank'});$li.css({'color':'red','cursor':'pointer'});$li.text(dataArray[i]);$('.breadcrumb').append($li);
+		var value = dataArray.length-1;
+		if($li.text() == dataArray[value]){
+			$li.css({'color':'green','opacity':'0.9','cursor':'not-allowed','pointerEvents':'none'});
+
+			}
+		
+	}
+
+	$(document).on('click','.dynLi',function(){
+		var data = $(this).text();
+		var newArray =[];
+			for(var j=1;j<dataArray.length;j++){
+				newArray.push(dataArray[j]);
+				if(data == dataArray[j]){
+					break;
+				}
+			}
+		baseUrl = "10.255.208.11" ;
+			for(var k=0;k<newArray.length;k++){
+				baseUrl = baseUrl + "/" + newArray[k];
+			}
+		//location.href = baseUrl;
+		console.log(baseUrl);
+		$("#divApp").html("<strong>The current url is :</strong> " + baseUrl);
+		
+	});
+});
+</script>
+</head>
+<body>
+
+<ul class="breadcrumb">
+  <!--<li class="breadscrumb">dynamically add here based on page url </li>-->
+</ul>
+
+<center><div id = "divApp"></div></center>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rotate the circle</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
+  <style>
+.debugger{
+  position:absolute;
+  top:0;
+  right:0;
+  font-size:20px;
+  color:red;
+}
+.viewport-box{
+  padding:50px;
+
+}
+.main-circle{
+  width: 400px;
+  height: 400px;
+  background: #f4f4f4;
+  position: relative;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+  </style>
+</head>
+<body>
+ 
+<div class="viewport-box">
+  <div class="main-circle">
+
+  </div>
+</div>
+ 
+ 
+</body>
+  <script>
+  $( function() {
+	
+	var circle = document.querySelector(".main-circle"),
+    imageURLs = ["https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/greensock-man-logo.svg","https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/greensock-man-logo.svg","https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/greensock-man-logo.svg"],
+    images = placeImages(imageURLs, 100, 100), 
+    spin = new TimelineMax({repeat:-1});
+
+//rotate the circle clockwise while at the same time rotating each image counter-clockwise to make them look like they're not spinning at all. 
+spin.to(circle, 60, {rotation:360, ease:Linear.easeNone})
+    .to(images, 60, {rotation:-360, ease:Linear.easeNone}, 0);
+
+//feed an array of URLs into this function and it'll place the images evenly around the edge of the circle, setting them to whatever width/height you define (in pixels)
+function placeImages(imageURLs, width, height) {
+  var angleIncrement = Math.PI * 2 / imageURLs.length,
+      radius = circle.offsetWidth / 2,
+      images = [],
+      image, angle, i;
+  for (i = 0; i < imageURLs.length; i++) {
+    image = new Image();
+    images.push(image);
+    image.setAttribute("src", imageURLs[i]);
+    circle.appendChild(image);
+    angle = angleIncrement * i;
+    TweenLite.set(image, {
+      width:width, 
+      height:height, 
+      position:"absolute", 
+      top:0, 
+      left:0, 
+      xPercent:-50, 
+      yPercent:-50,
+      transformOrigin:"50% 50%",
+      x: radius + Math.cos(angle) * radius,
+      y: radius + Math.sin(angle) * radius
+    });
+  }
+  return images;
+}
+ 
+
+
+
+  
+  
+  });
+  </script>
+
+</html>

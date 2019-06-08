@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+
+  <style>
+  #draggable {
+  width: 150px;
+  height: 150px;
+  background-color:red;
+  display:table-cell;
+  text-align:center;
+  vertical-align:middle; 
+  padding: 0.5em;
+  }
+  .parentDiv{
+  width: 300px;
+  height: 500px;
+  background-color:white;
+  display:table-cell;
+ 
+  padding: 0.5em;
+  border:3px solid black;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $(document).ready(function(){
+    $( "#draggable" ).draggable({
+	opacity:0.5,
+	cursor:'move'
+	});
+});
+  </script>
+</head>
+<body>
+ 
+<div class="parentDiv">
+		<div id="draggable" class="ui-widget-content">
+		  <p>Drag me around</p>
+		</div>
+</div>
+ 
+ 
+</body>
+</html>

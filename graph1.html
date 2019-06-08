@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () {
+
+var totalVisitors = 883000;
+var visitorsData = {
+"New vs Returning Visitors": [{
+// click: visitorsChartDrilldownHandler,
+ cursor: "pointer",
+ explodeOnClick: false,
+ innerRadius: "75%",
+ legendMarkerType: "square",
+ name: "New vs Returning Visitors",
+ radius: "100%",
+// showInLegend: true,
+ startAngle: 90,
+ type: "doughnut",
+ dataPoints: [
+  { y: 519960, name: "New Visitors", color: "#E7823A" },
+  { y: 363040, name: "Returning Visitors", color: "#546BC1" }
+ ]
+}]
+
+};
+
+var newVSReturningVisitorsOptions = {
+animationEnabled: true,
+theme: "light2",
+title: {
+ text: "New VS Returning Visitors"
+},
+subtitles: [{
+ text: "Click on Any Segment to Drilldown",
+ backgroundColor: "#2eacd1",
+ fontSize: 16,
+ fontColor: "white",
+ padding: 5
+}],
+legend: {
+ fontFamily: "calibri",
+ fontSize: 14,
+ itemTextFormatter: function (e) {
+  return e.dataPoint.name + ": " + Math.round(e.dataPoint.y / totalVisitors * 100) + "%";  
+ }
+},
+data: []
+};
+
+
+
+var chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
+chart.options.data = visitorsData["New vs Returning Visitors"];
+chart.render();
+
+
+$("#backButton").click(function() { 
+$(this).toggleClass("invisible");
+chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
+chart.options.data = visitorsData["New vs Returning Visitors"];
+chart.render();
+});
+
+}
+</script>
+<style>
+  #backButton {
+border-radius: 4px;
+padding: 8px;
+border: none;
+font-size: 16px;
+background-color: #2eacd1;
+color: white;
+position: absolute;
+top: 10px;
+right: 10px;
+cursor: pointer;
+  }
+  .invisible {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="canvasjs.min.js"></script>
+</body>
+</html>

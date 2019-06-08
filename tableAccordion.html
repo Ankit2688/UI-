@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table table-condensed table-hover table-bordered"  id="myTable">
+		<thead>
+			<tr><th>#</th><th>Date</th><th>Description</th><th>Credit</th><th>Debit</th><th>Balance</th></tr>
+		</thead>
+		<tbody class="panel">
+		
+			<tr data-toggle="collapse" data-target="#demo1" data-parent="#myTable">
+				<td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td>
+			</tr>
+				<tr id="demo1" class="collapse">
+					<td colspan="6">
+						<table class="table table-bordered">
+							<thead class="info">
+								<tr class="info"><th>#</th><th>Date</th><th>Description</th><th>Credit</th><th>Debit</th><th>Balance</th></tr>
+							</thead>
+							<tbody>
+								<tr class="success"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="danger"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="success"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="danger"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="success"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			
+			<tr data-toggle="collapse" data-target="#demo2" data-parent="#myTable">
+				<td>2</td><td>05 May 2013</td><td>Credit Account</td><td>$11.00</td><td></td><td>$161.00</td>
+			</tr>
+				<tr id="demo2" class="collapse">
+					<td colspan="6">
+						<table class="table table-bordered">
+							<thead>
+								<tr class="info"><th>#</th><th>Date</th><th>Description</th><th>Credit</th><th>Debit</th><th>Balance</th></tr>
+							</thead>
+							<tbody>
+								<tr class="success"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="danger"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="success"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="danger"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="success"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			
+			<tr data-toggle="collapse" data-target="#demo3" data-parent="#myTable">
+				<td>3</td><td>05 May 2013</td><td>Credit Account</td><td>$500.00</td><td></td><td>$661.00</td>
+			</tr>
+				<tr id="demo3" class="collapse">
+					<td colspan="6">
+						<table class="table table-bordered">
+							<thead>
+								<tr class="info"><th>#</th><th>Date</th><th>Description</th><th>Credit</th><th>Debit</th><th>Balance</th></tr>
+							</thead>
+							<tbody>
+								<tr class="success"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="danger"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="success"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="danger"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+								<tr class="success"><td>1</td><td>05 May 2013</td><td>Credit Account</td><td>$150.00</td><td></td><td>$150.00</td></tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+    </tbody>
+</table>
+</div>
+
+</body>
+</html>

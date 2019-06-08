@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+	for(var i = 1 ; i<=52 ; i++){
+		var result = $('<input/>').attr({ type: 'button', class : "button",name:'btn1', value:i });
+		$('#item').append(result);
+        }
+
+});
+</script>
+<style>
+.button {
+display: inline-block;
+    padding: 0px 7px;
+    margin: 9px 0px 5px 16px;
+    font-size: 17px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px #999;
+    width: 5.5%;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+</head>
+<body>
+
+
+<div id="item">
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html><head>
+<script>
+
+window.onload = function(){
+
+var totalVisitors = 100000;
+newVisitors = 40000;
+existingVisitors = 60000;
+
+var visistorData = 	{
+ 
+ "New vs Visiting Vistors" :[{
+	name : "New vs Visiting Vistors",
+	cursor : "pointer" ,
+	innerRadius :"75%", 
+	radius : "100%",
+	startAngle : 90,
+	type : "doughnut",
+	dataPoints : [
+		{y : newVisitors , name :" New Visitors" , color : "#E7823A"},
+		{y : existingVisitors , name : "Existing Visitors" , color : "#546BC1"}
+	]
+ }]
+};
+
+var newVsVisitingDataOptions = {
+animationEnabled : true,
+theme : "light2",
+title : {
+	text : "Graph"
+},
+data : []
+} ; 
+
+
+
+
+var chart = new CanvasJS.Chart("paintGraph" ,newVsVisitingDataOptions );
+chart.options.data = visistorData["New vs Visiting Vistors"];
+
+}
+
+
+
+</script>
+</head>
+<body>
+<div id = "paintGraph"></div>
+<script src = "http://code.jquery.com/jquery-2.1.1.js"></script>
+<script src = "canvasjs.min.js"></script>
+</body>
+</html>

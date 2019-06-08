@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1><center>Be Happy !!!</center></h1><br></br>
+<body>
+<div class="container">
+    <table class="table table-condensed table-hover table-bordered"  id="myTable">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Date</th>
+				<th>Description</th>
+				<th>Credit</th>
+				<th>Debit</th>
+				<th>Balance</th>
+			</tr>
+		</thead>
+		<tbody class="panel">
+			<tr data-toggle="collapse" data-target="#demo1" data-parent="#myTable">
+				<td>1</td>
+				<td>05 May 2013</td>
+				<td>Credit Account</td>
+				<td class="text-success">$150.00</td>
+				<td class="text-error"></td>
+				<td class="text-success">$150.00</td>
+			</tr>
+			<tr id="demo1" class="collapse">
+				<td colspan="6" class="hiddenRow"><div><center>Demo1</center></div> </td>
+			</tr>
+			<tr data-toggle="collapse" data-target="#demo2" data-parent="#myTable">
+				<td>2</td>
+				<td>05 May 2013</td>
+				<td>Credit Account</td>
+				<td class="text-success">$11.00</td>
+				<td class="text-error"></td>
+				<td class="text-success">$161.00</td>
+			</tr>
+			<tr id="demo2" class="collapse">
+				<td colspan="6" class="hiddenRow"><div><center>Demo2</center></div></td>
+			</tr>
+			<tr data-toggle="collapse" data-target="#demo3" data-parent="#myTable">
+				<td>3</td>
+				<td>05 May 2013</td>
+				<td>Credit Account</td>
+				<td class="text-success">$500.00</td>
+				<td class="text-error"></td>
+				<td class="text-success">$661.00</td>
+			</tr>
+			<tr id="demo3" class="collapse">
+				<td colspan="6" class="hiddenRow"><div><center>Demo3</center></div></td>
+			</tr>
+		</tbody>
+</table>
+</div>
+</body>
+</html>

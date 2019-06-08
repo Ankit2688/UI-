@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Number Game</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+	<center>
+		<div class="container" ng-app = "myApp" ng-controller = "myCtrl">
+		<span ng-show = "newUser">
+			<span><h1>{{WelcomeMessage}}</h1></span>
+		</span><br />			
+		
+		
+		<div class="container" ng-show = "newUser">
+		  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Click To Play</button>
+		  <!-- Modal -->
+		  <div class="modal fade" id="myModal">
+			<div class="modal-dialog">			
+			  <!-- Modal content-->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">Before Play  <strong>Register Here..</strong></h4>
+				</div>
+				<div class="modal-body">
+					    <form name="myForm">
+							<div class="form-group">
+							  <label for="name" style = "display: flex;" >Name:</label>
+							  <input type="name" name ="myName" class="form-control" ng-model = "myName" id="name" placeholder="Enter name" required>
+							  <span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
+							</div>
+							<div class="form-group">
+							  <label for="pwd" style = "display: flex;" >Password:</label>
+							  <input type="password"name ="myPass" class="form-control" ng-model ="myPass" id="pwd" placeholder="Enter password" required>
+							  <span ng-show="myForm.myPass.$touched && myForm.myPass.$invalid">The Password is required.</span>
+							</div>
+							<div class="checkbox">
+							  <label style = "display: flex;"><input type="checkbox" name ="Iagreed"ng-model ="Iagreed">I Agree</label>
+							</div>
+						</form>
+							  <p style ="text-align:left"> please accept before submitting..</p>		
+				</div>
+				<div class="modal-footer">
+				  <button type="button" ng-disabled = "!Iagreed || myForm.myName.$invalid || myForm.myPass.$invalid"class="btn btn-default" ng-click = "registerUser()" data-dismiss="modal">Submit</button>
+				</div>
+			  </div>
+			</div>
+		  </div>  
+		</div>
+		  <div class="alert alert-success" ng-show="enableUser" >
+			<span><strong>{{uName}}</strong>  you have registered successfully.....</span><br/><br/>
+			<input type = "button" style = "text-align:center"class ="btn btn-success btn-xs" value = "let's start" ng-click = "gameStart()">
+		</div>
+		
+		
+			<div ng-show="enableStart" style ="background-color: whitesmoke;height:-webkit-fill-available">
+				<span style="text-align: right"><p style="padding:13px 10px 10px 10px">Hi,{{uName}}</p></span>
+				<span><h1>{{Numberheader}}</h1></span>			
+				<b style = "font-size :15px;padding:15px" id = "attmptId">{{initialAttempts}}</b><span class="badge">{{totalAttempts}}</span>
+				<div class= "row" style = "margin : 10px;padding : 10px">
+					<div class= "form-group">
+					<form name="fname">
+						<label>Enter Your Guess :</label>
+						<input type = "number"  id = "guessField" ng-disabled = "disableField" class = "form-control" name="mguessField" ng-model = "mguessField"  style = "width:300px"  pattern="/^[0-9]*$/" autofocus ><br/>
+						<input type = "button" id = "submitButton"class = "btn btn-primary" value = "submit Guess" ng-disabled = "disableField" ng-click = "checkResult()">
+						<input type = "button"  id = "exitButton"class = "btn btn-danger" value = "exit Game" ng-click = "exitGame()">
+					</form>
+					</div>
+					<div id = "output">
+					</div>
+						<input type = "button" style = "text-align:center" ng-show = "enableTry"class ="btn btn-success btn-xs" value = "Try Again" ng-click = "tryAgain()">
+				</div>
+			</div>
+		</div>
+	</center>
+<script>
+var app = angular.module("myApp",[]);
+app.controller("myCtrl", function($scope, $http){
+
+  $scope.successMsg = false;
+	$scope.newUser = true;
+	$scope.enableUser = false;
+ 	$scope.enableTry = false;
+	$scope.disableField = false;
+	$scope.enableStart = false;
+	$scope.dValue = false;	
+	$scope.header = "Image Tab";
+	$scope.initialAttempts = "Total Attempts :"
+	$scope.totalAttempts = "10";
+	$scope.WelcomeMessage = "Number  Game"
+	$scope.Numberheader = "Number Guessing "	
+	//fetching data from external json
+	$http({
+      method: 'GET',
+      url: 'car.json'
+   }).then(function (response){
+	   $scope.carData = response.data;
+
+   },function (error){
+
+   }); 
+   
+   //session
+
+//sessionStorage.setAttribute("uname",userName);
+
+  $scope.registerUser = function(){
+  	$scope.newUser = false;
+  $scope.successMsg = true;
+	$scope.enableUser = true;
+	var userName = document.getElementById("name").value;
+	$scope.uName =userName ;
+   // alert("you have successfully registered",userName) ;	
+  } 
+
+  $scope.gameStart = function(){
+  	$scope.enableStart = true;
+	$scope.enableUser = false;
+
+  }
+
+$scope.mainImage = "image/main.jpg"
+//random number game ------
+ var randomNum = Math.floor(Math.random()*100+2);
+ var guess =1 ;
+ var leftAttempt = document.getElementById("attmptId");
+ 
+$scope.checkResult = function(){	
+	
+			leftAttempt.innerHTML = "Total Attempts Left :"
+			var enteredNum = parseInt(document.getElementById("guessField").value);
+			var outputResult = document.getElementById("output");
+			if (randomNum == enteredNum){
+				outputResult.innerHTML = "<strong>Congo  you won and  !!! You Answered in</strong> "	+ guess + " <strong>Attempt</strong>" ;
+				document.getElementById("guessField").value ='';				
+				document.getElementById("guessField").focus();
+				guess =1;	
+				$scope.enableTry = true;
+				$scope.totalAttempts = 0 ;
+			    $scope.disableField = true;	
+
+			
+			}
+			else if (enteredNum > randomNum){
+				guess++;
+				$scope.totalAttempts--;
+				outputResult.innerHTML = "<strong>OOPS Sorry !!</strong>Enter Lower Number than this.." ; 
+				document.getElementById("guessField").value = '';
+				document.getElementById("guessField").focus();
+
+
+			}
+			else {
+				guess++;
+				$scope.totalAttempts--;
+				outputResult.innerHTML = "<strong>OOPS Sorry !!</strong> Enter Greater Number than this.." ;
+				document.getElementById("guessField").value ='';				
+				document.getElementById("guessField").focus();
+				
+			}
+			if(guess == 11){
+				outputResult.innerHTML = "<p style = 'color :red'><strong>GAME OVER !!</strong></p>" ;
+				guess =1;
+				$scope.totalAttempts =0;				
+				$scope.enableTry = true;
+				$scope.disableField = true;
+				
+			}
+			
+		}
+//disable submit button on initial load ---	
+	$(document).ready(function(){
+		$('#submitButton').attr('disabled',true);
+		$('#guessField').keyup(function(){
+			if($(this).val().length !=0)
+				$('#submitButton').attr('disabled', false);            
+			else
+				$('#submitButton').attr('disabled',true);
+		})
+	});
+	
+$scope.tryAgain = function(){
+	//location.reload();
+	leftAttempt.innerHTML = "Total Attempts :"
+	document.getElementById("guessField").focus();
+	$scope.disableField = false;	
+	$scope.enableTry = false;
+	document.getElementById("output").innerHTML ='';
+	document.getElementById("guessField").value ='';
+	$scope.totalAttempts =10;
+	randomNum = Math.floor(Math.random()*100+2);
+
+}	
+
+$scope.exitGame= function(){
+window.close();
+}	
+});
+</script>	
+</body>
+</html>
+
+

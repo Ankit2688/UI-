@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+body {
+    background-color: black;
+}
+
+.content {
+       /* position: relative; */
+    /* z-index: 1; */
+    border: 2px solid white;
+    background-color: blue;
+    width: 960px;
+    height: 100px;
+    margin: auto;
+    /* overflow: hidden; */
+}
+
+.carte_button {
+       position: absolute;
+    z-index: 3;
+    border: 2px solid white;
+    background-color: yellow;
+    width: 100px;
+    height: 50px;
+}
+
+.carte {
+       position: relative;
+    top: -3px;
+    z-index: 2;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    background-color: green;
+    width: auto;
+    height: 0%;
+    /* margin: auto; */
+    transition: height 500ms;
+}
+
+.carte_button:hover + .carte {
+       border-top: none;
+    top: -66px;
+    height: 300px;
+    width: 200px;
+}
+
+.carte:hover {
+    height: 300px;
+}
+</style>
+</head>
+<body>
+<br><br><br><br>
+<div class="content">
+  <div class="carte_button"></div>
+  <div class="carte"></div>    
+</div>
+
+</body>
+</html>

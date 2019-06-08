@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sample Program</title>
+</head>
+<script>
+function myFunction(){
+	var userInput = prompt("Enter the number" , "enter number...");
+
+	var value = 0;
+	while(value <= userInput){
+		document.write(value + "<br/>");
+		value = value +2 ;
+			if(value > 100){
+			alert("Enter lower value than 100");
+			break;
+			}
+		}
+
+}
+</script>
+<body>
+<button onclick=myFunction()>Click me !!</button>
+</body>
+
+</html>
